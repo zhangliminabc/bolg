@@ -1,14 +1,12 @@
 ---
-title: javascript面向对象编程
-date: 2021-04-19 19:30:26
-tags: [JavaScript]
-categories: JavaScript
+title: javascript深入浅出11(面向对象)
+date: 2021-05-10 20:00:09
+tags: JavaScript
+categories: [JavaScript]
 updated:
-description:
-keywords: JavaScript, JavaScript面向对象编程
+description:  JavaScript深入浅出面向对象，剖析了js为什么说是面向对象，并从封装、继承、多态三方面来解释js的面向对象
+keywords: javascriptj
 ---
-
-### js 对象
 
 #### 1. 对象属性
 
@@ -27,7 +25,6 @@ set：设置属性值。 默认值 undifined
 访问器属性不能直接定义， 只能通过 Object.defineProperty 来定义
 Object.defineProperties(target， {})
 
-<!-- more -->
 
 ```javascript
 // 最新的定义访问器属性的方法
@@ -62,7 +59,6 @@ console.log(book.year); //2006
 ```
 
 #### 2. 创建对象
-
 ```javascript
 // 构造函数
 function Person(name, age, job) {

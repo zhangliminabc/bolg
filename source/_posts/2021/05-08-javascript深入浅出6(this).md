@@ -96,3 +96,22 @@ keywords: JavaScript
 
     getValue.mockCall(obj, ['参数1', '参数2'])
 ```
+
+```javascript
+    /**
+     *  @params0: this 对象
+     *  @params1： 参数列表
+     *  @return : Function
+     */
+    const a = {
+        a: 'eydgeye',
+        getValue: function (c, b) {
+            console.log(c, b)
+            console.log(arguments)
+            console.log(Array.prototype.slice.call(arguments, 1))
+            console.log(this.a)
+        }
+    };
+    const newBindFun = a.getValue.bind(a, 12, 'teftdede')
+    newBindFun()
+```
