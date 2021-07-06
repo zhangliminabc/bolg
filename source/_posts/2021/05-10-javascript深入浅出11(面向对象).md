@@ -25,6 +25,16 @@ set：设置属性值。 默认值 undifined
 访问器属性不能直接定义， 只能通过 Object.defineProperty 来定义
 Object.defineProperties(target， {})
 
+#### hasOwnProperty: 检测属性是否存在于实例中
+
+#### hasPrototypeProperty: 检测对象中是否在原型中存在给定的属性
+#### in操作符: 检测对象中是否存在给定的属性值
+
+#### isPrototypeOf: 对象之前是否存在存在某种关系
+#### getPrototypeof: 获取对象的的隐式原型，即对象的__proto__属性
+
+#### Object.getOwnPropertypeNames: 得到所有的实例属性，无论它是否可枚举
+
 
 ```javascript
 // 最新的定义访问器属性的方法

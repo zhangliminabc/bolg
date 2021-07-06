@@ -1,8 +1,8 @@
 ---
-title: EcmaScript6-generator
-date: 2021-05-06 11:28:56
-tags: EcmaScript6
-categories: [EcmaScript6]
+title: javascript深入浅出13(es5-generator)
+date: 2021-07-06 21:36:17
+tags:
+categories:
 updated:
 description:
 keywords:
