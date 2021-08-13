@@ -5,9 +5,8 @@ tags: JavaScript
 categories: [JavaScript]
 updated:
 description: js中的作用域只有函数作用域和全局作用域
-keywords: javascript
+keywords: javascript, js的作用域是指向当前执行环境中的的最后一个，作用域是指执行栈中的当前执行上下文的调用栈
 ---
-
 #### 作用域: (js中的作用域只有函数作用域和全局作用域)
 
 <b>确定当前执行代码对标识符的访问权限</b>

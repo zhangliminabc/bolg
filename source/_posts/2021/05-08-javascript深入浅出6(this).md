@@ -5,7 +5,7 @@ tags: JavaScript
 categories: [JavaScript]
 updated:
 description: 详细介绍了js中的this问题， 区分箭头函数和普通函数下的this的区别
-keywords: JavaScript
+keywords: JavaScript, （this可以叫做上下文对象， 也就是用来指明执行上下文是在哪个上下文中被触发的对象）
 ---
 
 [参考资源-阮一峰this讲解](http://www.ruanyifeng.com/blog/2018/06/javascript-this.html)
