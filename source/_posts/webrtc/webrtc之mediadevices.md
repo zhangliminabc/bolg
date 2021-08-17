@@ -7,11 +7,6 @@ updated:
 description:
 keywords: webrtc, mediaDevices
 ---
-
-### 浏览器音视频设备检测
-
-	
-
 ### 浏览器采集音视频流
 
 ```javascript
