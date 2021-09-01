@@ -1,11 +1,11 @@
 ---
 title: javascript深入浅出13(es5-generator)
 date: 2021-07-06 21:36:17
-tags:
-categories:
+tags: [EcmaScript, ES6]
+categories: [ES6]
 updated:
 description:
-keywords:
+keywords: EcmaScript, ES6
 ---
 
 ### 基本概念
