@@ -154,7 +154,7 @@ function prototypeInherited(obj) {
 }
 
 /**
- *  寄生式继承
+ *  寄生式继承: 以需要继承的对象为基准创建对象并在此对象上进行扩展
  */
 function prasiticInherited(obj) {
     let clone = Object.create(obj)
