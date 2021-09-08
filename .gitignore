@@ -10,3 +10,7 @@ learnjs/*
 scaffolds/*
 script/*
 _config.yml
+source/code/*
+interview/*
+source/_posts/interview/*
+source/_posts/page.md
