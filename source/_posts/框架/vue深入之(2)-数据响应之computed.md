@@ -26,12 +26,11 @@ cond1(yes)->op2->op4->op5->op6->op7->e
 cond1(no)->op3->op2->op4->op5->op6->op7->e
 ```
 
-```flow
-st=>start: 设置值
-op=>operation: dep.notify
-op=>operation: watcher.update
-op=>operation: 
-```
+#### 简述vue响应式原理
 
-1. 通过Object.defineProperty方法对对象的某个属性进行set、get实现一个数据更新值的拦截
-2. 取值的时
+1. 深度递归遍历增加数据劫持
+2. 当对劫持数据进行访问的时会判断当前是否有watcher实例， 如果有会保存当前的watcher实例到dep中的subs(订阅者)
+3. 当对劫持数据进行设置值时会触发dep中的notify， 遍历dep中存储的sub执行sub的update方法（发布）
+4. 组件实例之后会调用render生成虚拟dom， 在render过程中对用到的数据会执行updatecomponted
+
+<img align="center" src="../../static/vue响应式原理.png">
