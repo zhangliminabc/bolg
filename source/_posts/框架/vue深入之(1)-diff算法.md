@@ -8,6 +8,8 @@ description:
 keywords: vue, diff算法
 ---
 
+ 
+
 ```flow
 st=>start: diff算法
 op=>operation: 形参 oldVnode, newVnode
@@ -69,7 +71,6 @@ con8(no)->end
 
 ```
 
-
 #### 虚拟dom的作用？
 为了不必要的dom操作，优化性能
 
@@ -79,13 +80,15 @@ con8(no)->end
 
 在进行计算dom变动的时候可以对同级元素可以更高效的计算出变动，对性能的优化
 
-#### 简述diff过程
+#### 简述diff过程(不同标签直接替换 / 同级相同标签通过key计算变动)
 
-diff原理：
-
-不同标签直接替换
-
-同级相同变量通过key计算变动
-
-
-https://juejin.cn/post/6844903950886371342
+1. 接收两个入参，参数都是vnode
+2. 先判断标签和key相同就认为是相同node，会执行pathVnode函数
+3. 判断两个节点是否相同
+4. 新节点如果有文本, 老节点text 不等于 新节点的text， 设置节点内容
+5. 新节点没有文本可能会有children，
+6. 新老节点都有child， 执行updatechild方法，
+7. 新节点有child， 老节点没有child， 老节点有内容，会清空老节点内容，以新节点为基准遍历添加添加元素
+8. 老节点有child， 新节点没有; 遍历移除老节点下的child
+9. 老节点有文本， 清空老节点下的文本
+10. updatechild：首尾指针
