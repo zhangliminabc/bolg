@@ -1,31 +1,26 @@
-// function mockApply(thisObj, paramsList) {
-//     const params = Array.isArray(paramsList) ? paramsList : Array.from(paramsList)
-//     const currentThis = thisObj
-//     currentThis.fn = this
-//     const result = currentThis.fn(...params)
-//     delete currentThis.fn
-//     return result
-// }
+// apply(thisobj, [parma1, param2])
 
-function mockApply() {
-    let [currentThis, params] = Array.from(arguments)
-    currentThis.fn = this
-    const result = currentThis.fn(...params)
-    delete currentThis.fn
+Function.prototype._apply = function() {
+    const [thisOb, params] = Array.from(arguments)
+    let context = thisOb || window
+    const self = this
+    if (typeof context !== 'object') {
+        context = Object(context)
+    }
+    const key = Symbol('key')
+    context[key] = self
+    const result = context[key](...params)
+    delete context[key]
     return result
 }
 
-Function.prototype.mockCall = mockApply
+function fn(a, b) {
+    return this.a + this.b
+}
 
-// 测试
-var obj1 = {
+const obj = {
     a: 1,
+    b: 2
 }
 
-var f = function (param1, param2) {
-    console.log(param1) // 测试1
-    console.log(param2) // ceshi12
-    console.log(this.a) // 1
-    return param1
-}
-f.mockCall(obj1, ['测试1', 'ceshi12'])
+console.log(fn._apply(obj, [2, 3]))

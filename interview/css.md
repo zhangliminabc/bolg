@@ -57,6 +57,9 @@
      作用域链是正对变量
      原型链是正对构造函数的实例对象的
 
+15. JavaScript的数据类型
+16. js中的 === 和 == 的区别
+
 #### CSS
 
 1. 什么是盒子模型
@@ -116,6 +119,7 @@
 7. cookie 和 session
 8. sessionStorage 和 localStorage
 9. cookie 和 sessionStorage 的区别
+10. 浏览器的事件循环
 
 #### 网络
 
@@ -158,24 +162,86 @@ g. 通过location.hash跨域
 
 #### 框架
 
-1, template的作用
-2，v-if和v-show的区别
-3，data为啥是函数
-4, 防抖和节流的区别
-5, template和react的jsx的区别
-6, 发布订阅和单例模式的区别
-7, vue中发布订阅的使用场景
-8, vue中的指令有哪些
-9, vuerouter是如何获取路由上参数的
-10, $router和$route的区别
-11, router的路由模式
-12, router的事件监听的api
+1. template的作用
+
+2. v-if和v-show的区别
+
+  v-if: 条件渲染, dom存在于内存中， 并没有真正的渲染，条件快中的子组件和事件监听被销毁和重建
+  v-show: css的display去控制显示和隐藏
+  区别：
+  v-if适用于不频繁切换的场景
+  v-show使用于频繁切换场景
+
+3. data为啥是函数
+  因为js中的对象是引用关系， 当组件复用的时候data就会指向同一块内存地址， 使用函数可以返回一份原有对象的拷贝
+
+4. template和react的jsx的区别
+5. 发布订阅和单例模式的区别
+
+    发布订阅： 是建立一种1对多的一种关系
+    单例： 全局仅有一个实例化对象（闭包）
+
+6. vue中发布订阅的使用场景
+    eventBus / 数据响应式
+
+7. vue中的指令有哪些
+
+8. vuerouter是如何获取路由上参数的
+
+9. $router和$route的区别
+
+10. router的路由模式
+    hash / history / abstract
+
+11. router的事件监听的api
+
+    hash: url中的hash值只是路由的一个状态，当向服务端发送请求时hash部分不会被发送； hash值的改变都会增加一个历史记录，所以可以通过 hashchange来监听路由的变化
+
+    history: 监听 popstate事件， pushstate/ replaceState不会触发事件
+
+12. 路由钩子
+
+    全局钩子： beforeEach  / afterEach
+    路由独享： beforeEnter
+    组件内守卫： beforeRouteEnter / beforeRouteUpdate / beforeRouteLeave
+
+    完整的导航解析过程
+    导航被触发。
+      在失活的组件里调用 beforeRouteLeave 守卫。
+      调用全局的 beforeEach 守卫。
+      在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)。
+      在路由配置里调用 beforeEnter。
+      解析异步路由组件。
+      在被激活的组件里调用 beforeRouteEnter。
+      调用全局的 beforeResolve 守卫 (2.5+)。
+      导航被确认。
+      调用全局的 afterEach 钩子。
+      触发 DOM 更新。
+      调用 beforeRouteEnter 守卫中传给 next 的回调函数，创建好的组件实例会作为回调函数的参数传入。
+
 13. vue的组件通信有哪几种方式
+
+    vuex:
+    props:
+    $emit:
+    $parent / $child:
+    provide / inject: 解决跨组件间的通信
+    $attrs： 不背props所识别的
+    $listeners: 将父组件中不包含native修饰的事件传递给内部组件
+    eventbus：
+
 14. v-model的实现
 15. nexttick的原理以及使用场景
+    原理： 异步降级 promise -> MutationObserver -> setImmediate -> setTimeout
+    使用场景： 获取dom
+    在created中获取dom
+
 16. vue依赖收集的原理
+
 17. vue中 diff算法
+
 18. vue使用虚拟dom的目的
+
 19. vue的生命周期
 20. 父子组件之间的生命周期
 
@@ -183,16 +249,54 @@ g. 通过location.hash跨域
 
 21. vuex的原理
 22. vue中compute和watcher的区别
+
+  computed: 依赖其他属性值，当其他属性值发生改变，下一次获取computed的时候才会重新计算对应的置
+
+  watcher: 数据每次发生改变，都会触发
+
 23. vuex是如何注入到vue中的
 24. plugin 和 组件的区别
 25. 开发自定义的plugin
 26. vue.component 和 vue.extend 的区别
 27. vue编译原理
 28. vue的path算法
+
 29. vue的双向数据绑定原理
+     a. 深度递归遍历增加数据劫持
+     b. 当对劫持数据进行访问的时会判断当前是否有watcher实例， 如果有会保存当前的watcher实例到dep中的subs(订阅者)
+     c. 当对劫持数据进行设置值时会触发dep中的notify， 遍历dep中存储的sub执行sub的update方法（发布）
+
+     b. 组件实例之后会调用render生成虚拟dom， 在render过程中对用到的数据会执行updatecomponted
+     c. deptarget == render watcher
+      render watcher
+      computed watcher
+      watch watcher
+
 30. vuex的getter
 31. vue虚拟dom的作用
+
+  为了不必要的dom操作，优化性能
+  数据改变 ->虚拟DOM(计算变更)-> 操作DOM -> 视图更新
 32. v-for中的key的作用
+      在进行计算dom变动的时候可以对同级元素可以更高效的计算出变动，对性能的优化
+
+33. vue中的diff算法
+      不同标签直接替换
+      同级相同变量通过key计算变动
+      __patch__函数
+        接收两个入参，参数都是vnode
+        先判断标签和key相同就认为是相同node，会执行pathVnode函数
+           判断两个节点是否相同
+           新节点如果有文本, 老节点text 不等于 新节点的text， 设置节点内容
+           新节点没有文本可能会有children，
+             新老节点都有child， 执行updatechild方法，
+             新节点有child， 老节点没有child， 老节点有内容，会清空老节点内容，以新节点为基准遍历添加添加元素
+             老节点有child， 新节点没有; 遍历移除老节点下的child
+             老节点有文本， 清空老节点下的文本
+
+             updatechild：首尾指针
+
+34. vue的流程
 
 #### 自动化构建
 
@@ -206,14 +310,16 @@ g. 通过location.hash跨域
 2. 首屏加载优化
 3. 性能优： 火焰图
 4. 图片的优化方式
- 预加载
+  预加载
   赖加载
   滚动加载
 5. jsbriage的封装
 6. css-loader的作用
  css-loader 解释(interpret) @import 和 url()
-
-7.
+7. 发布订阅和单例模式的区别
+8. webview深层原理
+9. nginx的正向代码
+10. sql的内联和外联
 
 #### codeing
 
@@ -221,7 +327,18 @@ g. 通过location.hash跨域
 2. 怎样从数值中找到小数点最多的小树
 3. 数字转化成 [w, 千万， 百万]
 4. 数组排序，求最大值最小值和平均值
-5. 实现reduce
+5. 实现reduce(已掌握)
 6. 实现一个 Promise.all
 7. 防抖、节流
 8. code 回文数
+9. 写一个对数据的proxy代理
+10. 写一个并行请求函数
+
+知乎jd分析:
+
+1. 扎实的前端基础， html, js, css, 浏览器相关知识
+2. vue/ vuex/ vue-router
+3. webpack
+4. 算法/ 设计模式
+5. hybrid
+6. 移动端布局
