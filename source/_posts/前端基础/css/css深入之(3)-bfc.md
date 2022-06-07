@@ -22,7 +22,7 @@ keywords: CSS, BFC
 
 在页面中的一块渲染区域，并且有自己的渲染规则
 
-#### bfc(Block formatting contex): 决定了元素如何兑取内容进行布局以及和其他元素的关系和相互作用
+#### bfc(Block formatting context): 决定了元素如何兑取内容进行布局以及和其他元素的关系和相互作用
 
 简单理解是： BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素
 
@@ -98,7 +98,7 @@ keywords: CSS, BFC
 ```html
 <style>
     .wrap {
-        overflow: hidden; // 通过触发生成bfc， 避免同一个bfc内相邻元素box会发生margin重叠
+        overflow: hidden; // 通过触发生成bfc， 避免同一个bfc内相邻元素box会发生margin重叠,当兄弟盒子的外边距不一样时，将以最大的那个外边距为准。
     }
     p {
         color: #f55;

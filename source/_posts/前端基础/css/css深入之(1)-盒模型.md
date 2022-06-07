@@ -8,32 +8,32 @@ description:
 keywords: CSS
 ---
 
-#### 页面所呈现的效果就是一个一个盒子堆砌而成
+#### 什么是盒子模型？
+页面所呈现的效果就是一个一个盒子堆砌而成
+盒模型由margin + padding + border + content组成
 
 #### CSS的盒模型分类
 
-#### 标准盒模型
+###### 标准盒模型： content = content
 
-##### 组成部分
+<img src="../../../static/css/标准盒模型.webp">
 
-margin + padding + border + content
+如何设置为标准盒模型？
 
-##### 设置方式
+```css
+box-sizing:content-box;
+```
+###### IE 盒模型： content = content + border + padding
+<img src="../../../static/css/标准盒模型.webp">
 
-box-sizing:conent-box;
-
-#### IE盒模型
-
-##### 组成部分:
-
-margin + padding + border + content
-
-##### 设置方式:
-
+如何设置为IE盒模型？
+```css
 box-sizing:border-box;
+```
 
-总结：
-
-1. 标准盒模型和ie盒模型的区别
-
-IE 盒子模型的 content 部分包含了 border 和 pading。
+ ```javascript
+dom.style.width/height
+dom.currentStyle.width/height  (ie支持)
+window.getComputedStyle(dom).width/height;
+dom.getBoundingClientRect().width/height;
+ ```
